@@ -1,0 +1,2 @@
+select common_lookup_id from common_lookup where common_lookup_context = 'MEMBER' AND common_lookup_type = 'GROUP'
+/

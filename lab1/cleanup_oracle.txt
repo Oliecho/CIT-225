@@ -1,0 +1,22 @@
+DROP SEQUENCE ADDRESS_S1;                                                       
+DROP SEQUENCE COMMON_LOOKUP_S1;                                                 
+DROP PROCEDURE CONTACT_INSERT;                                                  
+DROP SEQUENCE CONTACT_S1;                                                       
+DROP VIEW CURRENT_RENTAL;                                                       
+DROP FUNCTION DROP_TABLE;                                                       
+DROP FUNCTION DROP_TYPES;                                                       
+DROP FUNCTION GET_TABLE_COLUMN_LIST;                                            
+DROP SEQUENCE ITEM_S1;                                                          
+DROP SEQUENCE MEMBER_S1;                                                        
+DROP SEQUENCE RENTAL_ITEM_S1;                                                   
+DROP SEQUENCE RENTAL_S1;                                                        
+DROP FUNCTION SAMPLE_FUNCTION;                                                  
+DROP PACKAGE SAMPLE_PACKAGE;                                                    
+DROP PROCEDURE SAMPLE_PROCEDURE;                                                
+DROP SEQUENCE STREET_ADDRESS_S1;                                                
+DROP SEQUENCE SYSTEM_USER_S1;                                                   
+DROP SEQUENCE TELEPHONE_S1;                                                     
+DROP FUNCTION TYPE_DEPENDENTS;                                                  
+
+PL/SQL procedure successfully completed.
+
