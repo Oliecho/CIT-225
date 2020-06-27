@@ -1,8 +1,8 @@
 -- ------------------------------------------------------------------
 --  Program Name:   apply_oracle_lab8.sql
 --  Lab Assignment: Lab #8
---  Program Author: Michael McLaughlin
---  Creation Date:  02-Mar-2018
+--  Program Author: Benard Oliech
+--  Creation Date:  27-June-2020
 -- ------------------------------------------------------------------
 -- Instructions:
 -- ------------------------------------------------------------------
@@ -29,6 +29,8 @@ SPOOL apply_oracle_lab8.txt
 -------------------------------------------------------------
 -- Start Part 1
 -------------------------------------------------------------
+CREATE SEQUENCE price_s1;
+
 INSERT INTO price
 ( price_id
 , item_id
@@ -40,53 +42,53 @@ INSERT INTO price
 , created_by
 , creation_date
 , last_updated_by
-, last_update_date)
-SELECT	price_s1.nextval
-,	i.item_id
-,	cl.common_lookup_id
-,	af.active_flag
-,	CASE
-		WHEN (TRUNC(SYSDATE) - i.release_date) <= 30 OR
-		     (TRUNC(SYSDATE) - i.release_date) > 30 AND
-		      af.active_flag = 'N' 
-		THEN i.release_date
-		ELSE i.release_date + 31
+, last_updated_date)
+SELECT price_s1.nextval
+, i.item_id
+, cl.common_lookup_id
+, af.active_flag
+,  CASE
+    WHEN (TRUNC(SYSDATE) - i.release_date) <= 30 OR
+     (TRUNC(SYSDATE) - i.release_date) > 30 AND
+      af.active_flag = 'N' 
+	THEN i.release_date
+	ELSE i.release_date + 31
 	END AS
 ,	CASE
-		WHEN (TRUNC(SYSDATE) - i.release_date) > 30 AND 
-		      af.active_flag = 'N' 
-		THEN i.release_date + 30
+	WHEN (TRUNC(SYSDATE) - i.release_date) > 30 AND 
+        af.active_flag = 'N' 
+	THEN i.release_date + 30
 	END AS
 ,	CASE
-		WHEN (TRUNC(SYSDATE) - i.release_date) <= 30 
-		THEN
+	WHEN (TRUNC(SYSDATE) - i.release_date) <= 30 
+	THEN
             CASE
-				WHEN dr.rental_days = 1 
-				THEN 3
-				WHEN dr.rental_days = 3 
-				THEN 10
-				WHEN dr.rental_days = 5 
-				THEN 15 --new rentals
+		WHEN dr.rental_days = 1 
+		THEN 3
+		WHEN dr.rental_days = 3 
+		THEN 10
+		WHEN dr.rental_days = 5 
+		THEN 15 --new rentals
 			END
 		WHEN (TRUNC(SYSDATE) - i.release_date) > 30 AND
 		      af.active_flag = 'N' 
-		THEN
-		     	CASE
-		    		WHEN dr.rental_days = 1 
-				THEN 3
-		     		WHEN dr.rental_days = 3 
-				THEN 10
-		    		WHEN dr.rental_days = 5 
-				THEN 15
+	THEN
+	  CASE
+		WHEN dr.rental_days = 1 
+		THEN 3
+		WHEN dr.rental_days = 3 
+		THEN 10
+		WHEN dr.rental_days = 5 
+		THEN 15
 		     	END
 		ELSE
-			CASE
-		    	 	WHEN dr.rental_days = 1 
-				THEN 1
-		     		WHEN dr.rental_days = 3 
-				THEN 3
-		     		WHEN dr.rental_days = 5 
-				THEN 5
+	 CASE
+		 WHEN dr.rental_days = 1 
+	         THEN 1
+		 WHEN dr.rental_days = 3 
+		THEN 3
+		  WHEN dr.rental_days = 5 
+		THEN 5
 		     	END
 	END AS
 , 1
