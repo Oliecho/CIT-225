@@ -48,7 +48,7 @@ CREATE TABLE calendar
 , CONSTRAINT fk_calendar_1 FOREIGN KEY(created_by) REFERENCES system_user(system_user_id)
 , CONSTRAINT fk_calendar_2 FOREIGN KEY(last_updated_by) REFERENCES system_user(system_user_id));
 
--- CREATE SEQUENCE calendar_s1;
+CREATE SEQUENCE calendar_s1;
 
 -- Verify Part 1a
 SET NULL ''
